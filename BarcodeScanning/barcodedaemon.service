@@ -1,0 +1,13 @@
+# This file should be placed as /etc/systemd/system/barcodedaemon.service
+
+[Unit]
+Description=Barcode Scanning Daemon, opens scanner devices and publishes scans
+After=network-online.target
+
+[Service]
+Environment="CB_BARCODE_IDENTITY=testingpi"
+Environment="CB_BARCODE_CONN_STR=blah"
+ExecStart=/usr/local/bin/barcodedaemon/barcodedaemon.py --nfc-vendor-product 054c --hid-vendor-product 0c2e 
+
+[Install]
+WantedBy=multi-user.target
